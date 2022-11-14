@@ -18,7 +18,7 @@
     const options = TYPES;
     let answers;
 
-    $: effect = effectiveness == 0.5 ? 'strong against' : `weak to`
+    $: effect = effectiveness == 0.5 ? 'not very effective' : `super effective`
     $: if (!type) {
         type = chooseRandomType();
     }
@@ -44,7 +44,7 @@
 
 
 <SingleChoiceCard
-    question={`What is ${type} ${effect}?`}
+    question={`Which of the following is ${effect} against ${type}?`}
     {options}
     {answers}
     >

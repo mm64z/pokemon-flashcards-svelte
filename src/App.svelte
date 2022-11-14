@@ -8,6 +8,7 @@
   
 
   <DefensiveTypesCard/>
+  <DefensiveTypesCard effectiveness={2}/>
 </main>
 
 <style>
