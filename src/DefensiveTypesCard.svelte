@@ -8,7 +8,7 @@
     /**
      * type <string> - one of the types, lowercase.  enumerated in types.js
      */
-    export let type
+    export let type = undefined
 
     /**
      * currently only supports 0.5 and 2x (resistant/weak)
