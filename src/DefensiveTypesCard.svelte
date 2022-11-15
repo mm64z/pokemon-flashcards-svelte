@@ -1,4 +1,7 @@
 <script>
+    /**
+     * This card is meant for quizzing on defensive typing
+    */
     import { Button } from "carbon-components-svelte";
 
     import SingleChoiceCard from "./SingleChoiceCard.svelte";
@@ -28,7 +31,7 @@
             if (defenderEntries[type] == effectiveness) {
                 return attackerType;
             }
-        })
+        }).filter ((element) => !!element)
     }
 
     function refreshCard () {
