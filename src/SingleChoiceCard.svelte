@@ -1,5 +1,9 @@
 <script>
-    
+    import { Button, MultiSelect, Select, Tile } from "carbon-components-svelte";
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
     export let question;
     export let options;
     export let answers;
@@ -11,7 +15,11 @@
     }
 
     function handleFlip() {
-        flipped = true
+        flipped = !flipped
+    }
+
+    function refreshCard() {
+        dispatch('refresh')
     }
 
 </script>
@@ -21,15 +29,15 @@
         {question}
     </div>
     {#if !flipped}
-    <div class='front' on:click={handleFlip}>
+    <div class='front' on:click={handleFlip} on:keypress={handleFlip}>
         Options:
-        <div class='options'>
+        <div>
             {options}
         </div>
 
     </div>
     {:else}
-    <div class='back'>
+    <div class='back' on:click={handleFlip} on:keypress={handleFlip}>
         Answer:
         <div class='options'>
             {answers}
@@ -37,3 +45,17 @@
     </div>
     {/if}
 </div>
+<Button on:click={refreshCard}>
+    Refresh
+</Button>
+
+<style>
+    .card {
+        width: 800px;
+        box-shadow: 3px 3px 3px 0;
+        border: 3px solid;
+        border-color: black;
+        margin: 10px;
+    }
+
+</style>

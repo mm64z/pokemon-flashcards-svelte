@@ -50,8 +50,6 @@
     question={`Which of the following is ${effect} against ${type}?`}
     {options}
     {answers}
+    on:refresh={refreshCard}
     >
 </SingleChoiceCard>
-<Button on:click={refreshCard}>
-    Refresh
-</Button>
