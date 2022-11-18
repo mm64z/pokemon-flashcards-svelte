@@ -21,28 +21,38 @@
   function refreshCard() {
     dispatch("refresh");
   }
+  function clickPrev() {
+    dispatch("prev");
+  }
+  function clickNext() {
+    dispatch("next");
+  }
 </script>
 
-<div class="card">
-  <slot name="icon" />
-  <div class="question">
-    {question}
+<div>
+  <Button on:click={clickPrev}>Prev</Button>
+  <div class="card">
+    <slot name="icon" />
+    <div class="question">
+      {question}
+    </div>
+    {#if !flipped}
+      <div class="front" on:click={handleFlip} on:keypress={handleFlip}>
+        Options:
+        <div>
+          {options}
+        </div>
+      </div>
+    {:else}
+      <div class="back" on:click={handleFlip} on:keypress={handleFlip}>
+        Answer:
+        <div class="options">
+          {answers}
+        </div>
+      </div>
+    {/if}
   </div>
-  {#if !flipped}
-    <div class="front" on:click={handleFlip} on:keypress={handleFlip}>
-      Options:
-      <div>
-        {options}
-      </div>
-    </div>
-  {:else}
-    <div class="back" on:click={handleFlip} on:keypress={handleFlip}>
-      Answer:
-      <div class="options">
-        {answers}
-      </div>
-    </div>
-  {/if}
+  <Button on:click={clickNext}>Next</Button>
 </div>
 <Button on:click={refreshCard}>Refresh</Button>
 

@@ -50,4 +50,6 @@
   {options}
   {answers}
   on:refresh={refreshCard}
+  on:prev={prevCard}
+  on:next={nextCard}
 />

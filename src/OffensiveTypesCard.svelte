@@ -6,6 +6,7 @@
 
   import SingleChoiceCard from "./SingleChoiceCard.svelte";
   import { TYPES, TYPE_CHART } from "./types";
+  import TypeIcon from "./TypeIcon.svelte";
 
   /**
    * type <string> - one of the types, lowercase.  enumerated in types.js
@@ -51,4 +52,7 @@
   {answers}
   on:refresh={refreshCard}
 >
+  <div slot="icon">
+    <TypeIcon {type} />
+  </div>
 </SingleChoiceCard>

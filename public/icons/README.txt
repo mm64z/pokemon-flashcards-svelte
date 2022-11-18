@@ -1,0 +1,1 @@
+version 1.0.0 from https://github.com/duiker101/pokemon-type-svg-icons
