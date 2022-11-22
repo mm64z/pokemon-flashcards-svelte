@@ -1,9 +1,8 @@
 <script>
   import { ContentSwitcher, Switch } from "carbon-components-svelte";
+    import ChooseTypeCard from "./ChooseTypeCard.svelte";
 
   import DefensiveTypesCard from './DefensiveTypesCard.svelte';
-    import DescriptiveTypesCard from "./DescriptiveTypesCard.svelte";
-    import Counter from "./lib/Counter.svelte";
   import OffensiveTypesCard from './OffensiveTypesCard.svelte';
 
   let selectedIndex = 0
@@ -25,6 +24,11 @@
     }
   },{
     name: OffensiveTypesCard,
+    props: {
+      effectiveness: 2,
+    }
+  },{
+    name: ChooseTypeCard,
     props: {
       effectiveness: 2,
     }
