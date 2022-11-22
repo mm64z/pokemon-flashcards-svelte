@@ -1,9 +1,19 @@
 <script>
   import { Select, SelectItem } from "carbon-components-svelte";
+  import { createEventDispatcher } from "svelte";
 
   import { TYPES } from "./types";
 
-  export let type = TYPES[0]
+  const dispatch = createEventDispatcher();
+
+  export let exclude = undefined;
+
+  export let type;
+
+  $: validTypes = TYPES.filter((indTypes) => indTypes !== exclude)
+  $: if (type) {
+    dispatch('change', {newType: type})
+  }
 
   /**
      * @param {string} opt
@@ -14,12 +24,17 @@
 </script>
 
 
-<Select inline
+<Select class="selector" inline
   labelText="Choose Type"
   bind:selected={type}
-  on:change={(e) => console.log("value", e.detail)}
 >
-  {#each TYPES as typeOption}
-    <SelectItem value={typeOption} text={capitalize(typeOption)} />
+  {#each validTypes as typeOption}
+    <SelectItem value={typeOption} text={capitalize(typeOption)} />\
   {/each}
 </Select>
+
+<style>
+  :global(.selector .bx--select__arrow) {
+    display: none;
+  }
+</style>

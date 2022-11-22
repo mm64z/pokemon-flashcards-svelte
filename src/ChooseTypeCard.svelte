@@ -1,22 +1,27 @@
 <script>
-  import { Button, MultiSelect, Select, Tile, Checkbox } from "carbon-components-svelte";
-  import { createEventDispatcher } from "svelte";
-    import TypeChooser from "./TypeChooser.svelte";
-  import { TYPES, TYPE_CHART } from "./types";
-
-  const dispatch = createEventDispatcher();
+  import { Checkbox } from "carbon-components-svelte";
+  import TypeChooser from "./TypeChooser.svelte";
 
   let dual;
 
   let type1;
   let type2;
+
+  function setType1 (e) {
+    type1 = e.detail.newType
+  }
+  function setType2 (e) {
+    type2 = e.detail.newType
+  }
+
 </script>
 
 <div class='card'>
   <Checkbox labelText="Dual Typing" bind:checked={dual} />
-  <TypeChooser bind:type={type1}/>
+  <!-- <TypeChooser on:change={setType1}  exclude={dual ? type2 : undefined} />  -->
+  <TypeChooser bind:type={type1}  /> 
   {#if dual}
-    <TypeChooser bind:type={type2}/>
+    <TypeChooser bind:type={type2} exclude={type1}/>
   {/if}
 </div>
 
