@@ -62,6 +62,7 @@
 </script>
 
 <SingleChoiceCard
+  bind:type
   question={`Which of the following is ${effect} against ${type}?`}
   {options}
   {answers}

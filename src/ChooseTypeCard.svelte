@@ -1,28 +1,50 @@
 <script>
   import { Checkbox } from "carbon-components-svelte";
   import TypeChooser from "./TypeChooser.svelte";
+  import { find4xWeakTo, findWeakTo } from "./utils";
 
   let dual;
 
   let type1;
   let type2;
 
-  function setType1 (e) {
-    type1 = e.detail.newType
+  function setType1(e) {
+    type1 = e.detail.newType;
   }
-  function setType2 (e) {
-    type2 = e.detail.newType
+  function setType2(e) {
+    type2 = e.detail.newType;
   }
-
 </script>
 
-<div class='card'>
-  <Checkbox labelText="Dual Typing" bind:checked={dual} />
-  <!-- <TypeChooser on:change={setType1}  exclude={dual ? type2 : undefined} />  -->
-  <TypeChooser bind:type={type1}  /> 
-  {#if dual}
-    <TypeChooser bind:type={type2} exclude={type1}/>
-  {/if}
+<div class="card">
+  <div class="panel">
+    <!-- selected types are weak to -->
+    <div>
+      {#if dual}
+        <div>Your selected types are 4x weak to:</div>
+        <div>
+          {find4xWeakTo(type1, type2)}
+        </div>
+      {/if}
+    </div>
+    <div>
+      <div>Your selection is 2x weak to:</div>
+      <div>
+        {findWeakTo(type1, dual ? type2 : undefined)}
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <Checkbox labelText="Dual Typing" bind:checked={dual} />
+    <!-- <TypeChooser on:change={setType1}  exclude={dual ? type2 : undefined} />  -->
+    <TypeChooser bind:type={type1} />
+    {#if dual}
+      <TypeChooser bind:type={type2} exclude={type1} />
+    {/if}
+  </div>
+  <div class="panel">
+    <!-- super effective against -->
+  </div>
 </div>
 
 <style>
@@ -32,5 +54,16 @@
     border: 3px solid;
     border-color: black;
     margin: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
+  .panel {
+    flex: 1 1 30%; /*grow | shrink | basis */
+    height: 100px;
+  }
+
+
 </style>
