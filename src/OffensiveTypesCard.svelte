@@ -44,13 +44,30 @@
     const randIndex = Math.floor(Math.random() * TYPES.length);
     return TYPES[randIndex];
   }
+  function prevCard() {
+    let index = TYPES.indexOf(type) - 1;
+    if (index < 0) {
+      index = TYPES.length-1;
+    }
+    type = TYPES[index];
+  }
+  function nextCard() {
+    let index = TYPES.indexOf(type) + 1;
+    if (index >= TYPES.length) {
+      index = 0;
+    }
+    type = TYPES[index];
+  }
 </script>
 
 <SingleChoiceCard
+  bind:type
   question={`Which of the following is ${type} ${effect} against?`}
   {options}
   {answers}
   on:refresh={refreshCard}
+  on:prev={prevCard}
+  on:next={nextCard}
 >
   <div slot="icon">
     <TypeIcon {type} />

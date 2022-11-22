@@ -1,9 +1,11 @@
 <script>
   import { Button, MultiSelect, Select, Tile } from "carbon-components-svelte";
   import { createEventDispatcher } from "svelte";
+  import { TYPES, TYPE_CHART } from "./types";
 
   const dispatch = createEventDispatcher();
 
+  export let type;
   export let question;
   export let options;
   export let answers;
@@ -18,33 +20,47 @@
     flipped = !flipped;
   }
 
+
   function refreshCard() {
-    dispatch("refresh");
+    type = chooseRandomType();
   }
-  function clickPrev() {
-    dispatch("prev");
+
+  function chooseRandomType() {
+    const randIndex = Math.floor(Math.random() * TYPES.length);
+    return TYPES[randIndex];
   }
-  function clickNext() {
-    dispatch("next");
+  function prevCard() {
+    let index = TYPES.indexOf(type) - 1;
+    if (index < 0) {
+      index = TYPES.length-1;
+    }
+    type = TYPES[index];
+  }
+  function nextCard() {
+    let index = TYPES.indexOf(type) + 1;
+    if (index >= TYPES.length) {
+      index = 0;
+    }
+    type = TYPES[index];
   }
 </script>
 
 <div>
-  <Button on:click={clickPrev}>Prev</Button>
-  <div class="card">
+  <Button on:click={prevCard}>Prev</Button>
+  <div class="card" on:click={handleFlip} on:keypress={handleFlip}>
     <slot name="icon" />
     <div class="question">
       {question}
     </div>
     {#if !flipped}
-      <div class="front" on:click={handleFlip} on:keypress={handleFlip}>
+      <div class="front" >
         Options:
         <div>
           {options}
         </div>
       </div>
     {:else}
-      <div class="back" on:click={handleFlip} on:keypress={handleFlip}>
+      <div class="back">
         Answer:
         <div class="options">
           {answers}
@@ -52,7 +68,7 @@
       </div>
     {/if}
   </div>
-  <Button on:click={clickNext}>Next</Button>
+  <Button on:click={nextCard}>Next</Button>
 </div>
 <Button on:click={refreshCard}>Refresh</Button>
 
