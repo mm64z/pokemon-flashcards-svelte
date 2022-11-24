@@ -39,7 +39,7 @@
   let:item
 >
   <div class="menu-item">
-    <TypeIcon type={item.text} size={20}></TypeIcon>
+    <TypeIcon type={item.text} size={16}></TypeIcon>
     <span>{item.text}</span>
   </div>
 </Dropdown>
