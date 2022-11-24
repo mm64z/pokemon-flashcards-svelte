@@ -1,9 +1,14 @@
 <script>
   import { ContentSwitcher, Switch } from "carbon-components-svelte";
-    import ChooseTypeCard from "./ChooseTypeCard.svelte";
+  import "carbon-components-svelte/css/all.css";
 
+  import ChooseTypeCard from "./ChooseTypeCard.svelte";
   import DefensiveTypesCard from './DefensiveTypesCard.svelte';
   import OffensiveTypesCard from './OffensiveTypesCard.svelte';
+
+  let theme = "g90"; // "white" | "g10" | "g80" | "g90" | "g100"
+
+  $: document.documentElement.setAttribute("theme", theme);
 
   let selectedIndex = 0
   

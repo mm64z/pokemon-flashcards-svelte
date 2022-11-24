@@ -1,5 +1,5 @@
 <script>
-  import { Select, SelectItem } from "carbon-components-svelte";
+  import { Dropdown, FormItem } from "carbon-components-svelte";
   import { createEventDispatcher } from "svelte";
 
   import { TYPES } from "./types";
@@ -10,10 +10,16 @@
 
   export let type;
 
+  let selectedIndex = 0;  
+
   $: validTypes = TYPES.filter((indTypes) => indTypes !== exclude)
   $: if (type) {
     dispatch('change', {newType: type})
   }
+  $: if (selectedIndex > -1) {
+    type = itemList[selectedIndex].text
+  }
+  $: itemList = validTypes.map((indType, i) => {return {id: i, text: indType}})
 
   /**
      * @param {string} opt
@@ -24,17 +30,16 @@
 </script>
 
 
-<Select class="selector" inline
-  labelText="Choose Type"
-  bind:selected={type}
+<Dropdown class="selector" as="span"
+  titleText="Choose Type"
+  itemToString={(item) => capitalize(item.text)}
+  bind:selectedId={selectedIndex}
+  items={itemList}
 >
-  {#each validTypes as typeOption}
-    <SelectItem value={typeOption} text={capitalize(typeOption)} />\
-  {/each}
-</Select>
+</Dropdown>
 
 <style>
-  :global(.selector .bx--select__arrow) {
-    display: none;
+  :global(.bx--list-box__menu-item, .bx--list-box__menu-item__option) {
+    height: auto;
   }
 </style>
