@@ -3,27 +3,6 @@
    * expect type to be one of TYPES
    */
 
-  const fontMapping = {
-    'grass': 'g',
-    'fire': 'r',
-    'water': 'w',
-    'electric': 'l',
-    'fighting': 'f',
-    'psychic': 'p',
-    'dark': 'd',
-    'steel': 'm',
-    'dragon': 'n',
-    'fairy': 'y',
-    'normal': 'c',
-    'flying': 'v',
-    'poison': 'o',
-    'ground': 'a',
-    'rock': 'k',
-    'bug': 'b',
-    'ghost': 'h',
-    'ice': 'i',
-  }
-
   export let type = "normal";
   export let size = 20;
 
@@ -34,7 +13,7 @@
 style="--icon-size: {size}px"
 class={`font-icon ${type}`} width={size} height={size}>
   <!-- <span class='circle'>Z</span> -->
-  <span class='type-icon'>{fontMapping[type]}</span>
+  <i class='type-icon pokeicon-{type}'></i>
 </span>
 <!-- <img class={`icon ${type}`} src={srcPath} width={size} height={size} alt={type} /> -->
 

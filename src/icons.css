@@ -1,0 +1,65 @@
+
+
+@font-face { font-family: PokemonIcons; src: url('/Essentiarum-Regular.ttf'); }
+[class*=" pokeicon-"]:before {
+  font-family: 'PokemonIcons';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.pokeicon-grass:before {
+  content: "g";
+}
+.pokeicon-fire:before {
+  content: "r";
+}
+.pokeicon-water:before {
+  content: "w";
+}
+.pokeicon-electric:before {
+  content: "l";
+}
+.pokeicon-fighting:before {
+  content: "f";
+}
+.pokeicon-psychic:before {
+  content: "p";
+}
+.pokeicon-dark:before {
+  content: "d";
+}
+.pokeicon-steel:before {
+  content: "m";
+}
+.pokeicon-dragon:before {
+  content: "n";
+}
+.pokeicon-fairy:before {
+  content: "y";
+}
+.pokeicon-normal:before {
+  content: "c";
+}
+.pokeicon-flying:before {
+  content: "v";
+}
+.pokeicon-poison:before {
+  content: "o";
+}
+.pokeicon-ground:before {
+  content: "a";
+}
+.pokeicon-rock:before {
+  content: "k";
+}
+.pokeicon-bug:before {
+  content: "b";
+}
+.pokeicon-ghost:before {
+  content: "h";
+}
+.pokeicon-ice:before {
+  content: "i";
+}
