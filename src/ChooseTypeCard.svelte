@@ -18,6 +18,14 @@
 
 <div class="card">
   <div class="panel">
+    <Checkbox labelText="Dual Typing" bind:checked={dual} />
+    <!-- <TypeChooser on:change={setType1}  exclude={dual ? type2 : undefined} />  -->
+    <TypeChooser bind:type={type1} />
+    {#if dual}
+      <TypeChooser bind:type={type2} exclude={type1} />
+    {/if}
+  </div>
+  <div class="panel">
     <!-- selected types are weak to -->
     <div>
       {#if dual}
@@ -33,14 +41,6 @@
         {findWeakTo(type1, dual ? type2 : undefined)}
       </div>
     </div>
-  </div>
-  <div class="panel">
-    <Checkbox labelText="Dual Typing" bind:checked={dual} />
-    <!-- <TypeChooser on:change={setType1}  exclude={dual ? type2 : undefined} />  -->
-    <TypeChooser bind:type={type1} />
-    {#if dual}
-      <TypeChooser bind:type={type2} exclude={type1} />
-    {/if}
   </div>
   <div class="panel">
     <!-- super effective against -->
@@ -62,7 +62,6 @@
 
   .panel {
     flex: 1 1 30%; /*grow | shrink | basis */
-    height: 100px;
   }
 
 

@@ -46,7 +46,7 @@
 </script>
 
 <div>
-  <Button on:click={prevCard}>Prev</Button>
+  <Button on:click={prevCard} kind="secondary">Prev</Button>
   <div class="card" on:click={handleFlip} on:keypress={handleFlip}>
     <slot name="icon" />
     <div class="question">
@@ -68,9 +68,9 @@
       </div>
     {/if}
   </div>
-  <Button on:click={nextCard}>Next</Button>
+  <Button on:click={nextCard} kind="secondary">Next</Button>
 </div>
-<Button on:click={refreshCard}>Refresh</Button>
+<Button on:click={refreshCard} kind="secondary">Refresh</Button>
 
 <style>
   .card {
@@ -79,5 +79,11 @@
     border: 3px solid;
     border-color: black;
     margin: 10px;
+  }
+
+  :global(.bx--btn) {
+    border: 2px solid;
+    border-color: black;
+    padding: 15px 30px;
   }
 </style>
