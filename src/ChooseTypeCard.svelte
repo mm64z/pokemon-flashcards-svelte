@@ -1,5 +1,6 @@
 <script>
   import { Checkbox } from "carbon-components-svelte";
+  import { is_empty } from "svelte/internal";
   import TypeChooser from "./TypeChooser.svelte";
   import { find4xWeakTo, findWeakTo } from "./utils";
 
@@ -7,6 +8,9 @@
 
   let type1;
   let type2;
+
+  $: x4Weakness = find4xWeakTo(type1, type2)
+  $: x2Weakness = findWeakTo(type1, dual ? type2 : undefined)
 
   function setType1(e) {
     type1 = e.detail.newType;
@@ -31,14 +35,14 @@
       {#if dual}
         <div>Your selected types are 4x weak to:</div>
         <div>
-          {find4xWeakTo(type1, type2)}
+          {x4Weakness.length > 0 ? x4Weakness : "\n"}
         </div>
       {/if}
     </div>
     <div>
       <div>Your selection is 2x weak to:</div>
       <div>
-        {findWeakTo(type1, dual ? type2 : undefined)}
+        {x2Weakness}
       </div>
     </div>
   </div>
